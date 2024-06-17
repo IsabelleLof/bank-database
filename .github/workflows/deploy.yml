@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: Test with React Testing Library (RTL)
+    name: Test Backend
     runs-on: ubuntu-latest
 
     steps:
@@ -19,19 +19,19 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install Dependencies
-        working-directory: ./frontend
+      - name: Install Backend Dependencies
+        working-directory: ./backend
         run: npm install
 
-      - name: Run Tests
-        working-directory: ./frontend
+      - name: Run Backend Tests
+        working-directory: ./backend
         run: npm run test:ci
         env:
           CI: true
 
   deployment:
     needs: test
-    name: Deploy
+    name: Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
